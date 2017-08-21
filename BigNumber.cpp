@@ -26,8 +26,7 @@ int main()
 
     /**
         method abs()
-        @param 1: BigNumber object
-        @return BigNumber with absolute value
+        @return BigNumber with absolute value of (this)
     */
 
     BigNumber bigAbs("-155");
@@ -42,7 +41,6 @@ int main()
 
     /**
         method add(BigNumber val)
-        @param 1: BigNumber object
         @return BigNumber with the sum of (this + val)
     */
 
@@ -58,13 +56,12 @@ int main()
 /*********************************************************************************************************/
 
     /**
-        method compare(string val)
-        @param 1: BigNumber object
-        @return BigNumber with the comparison between (this + val)
+        method compare(BigNumber val)
+        @return BigNumber with the comparison between (this and val)
     */
 
     BigNumber bigCompare("5");
-    cout << bigCompare.compare("4") << " " << bigCompare.compare("5") << " " << bigCompare.compare("6") << endl;
+    cout << bigCompare.compare(BigNumber("4")) << " " << bigCompare.compare(BigNumber("5")) << " " << bigCompare.compare(BigNumber("6")) << endl;
 
     /** Output
         -1 0 1
@@ -75,7 +72,7 @@ int main()
 
     /**
         method factorial()
-        @return BigNumber as result of (BigNumber big!)
+        @return BigNumber as result of (BigNumber val!)
     */
 
     BigNumber bigFactorial("25");
@@ -89,8 +86,22 @@ int main()
 /*********************************************************************************************************/
 
     /**
+        method fibonacci()
+        @return BigNumber as result of the fibonacci of val
+    */
+
+    BigNumber bigFib("60");
+    cout << bigFib.fibonacci() << endl;
+
+    /** Output
+        1548008755920
+    */
+
+
+/*********************************************************************************************************/
+
+    /**
         method multiply(BigNumber val)
-        @param 1: BigNumber object
         @return BigNumber with the multiplication of (this + val)
     */
 
@@ -102,6 +113,20 @@ int main()
         54831182791
     */
 
+
+/*********************************************************************************************************/
+
+    /**
+        method power(BigNumber pow)
+        @return a BigNumber with the value of (this ^ pow)
+    */
+
+    BigNumber bigPow("2");
+    cout << bigPow.power(BigNumber("10")) << endl;
+
+    /** Output
+        1
+    */
 
 
 /*********************************************************************************************************/
@@ -117,7 +142,6 @@ int main()
     /** Output
         1
     */
-
 
 
 /*********************************************************************************************************/
@@ -240,6 +264,7 @@ int main()
     /** Output
         15 (as BigNumber)
     */
+
 
     return 0;
 }

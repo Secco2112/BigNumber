@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <sstream>
 #include <stdexcept>
+#include <typeinfo>
 
 #ifndef BIGNUMBER_H
 #define BIGNUMBER_H
@@ -14,16 +15,6 @@ class BigNumber {
 
         BigNumber(string Big){
             setBase(Big);
-        }
-
-
-        string getBase(){
-            return base;
-        }
-
-
-        void setBase(string val){
-            base = val;
         }
 
 
@@ -54,17 +45,17 @@ class BigNumber {
         }
 
 
-        int compare(string val){
-            if(getBase() == val){
+        int compare(BigNumber val){
+            if(getBase() == val.toString()){
                 return 0;
             } else {
-                if(getBase().compare(val) < 0) return 1;
+                if(getBase().compare(val.toString()) < 0) return 1;
                 else return -1;
             }
         }
 
 
-        BigNumber divide(string Div){
+        BigNumber divide(BigNumber Div){
             /**
                 TO-DO
             */
@@ -77,6 +68,34 @@ class BigNumber {
             for (int i = 1; i <= tmp.toInt(); i++)
                 fact = fact.multiply(valueOf(i));
             return fact;
+        }
+
+
+        BigNumber fibonacci(){
+            BigNumber a = BigNumber("0");
+            BigNumber b = BigNumber("1");
+            BigNumber aux("0");
+
+            for(int i=1 ;i<BigNumber(getBase()).toInt(); i++){
+                aux = a.add(b);
+                a = b;
+                b = aux;
+            }
+            return aux;
+        }
+
+
+        BigNumber power(BigNumber pow){
+            if(pow.toString() == "0") return BigNumber("0");
+
+            BigNumber tmp = BigNumber(getBase());
+            BigNumber result = BigNumber(getBase());
+
+            for(int i=1; i<pow.toInt(); i++){
+                result = result.multiply(tmp);
+            }
+
+            return result;
         }
 
 
@@ -225,8 +244,24 @@ class BigNumber {
         }
 
 
+        friend ostream& operator<<(ostream& out, const BigNumber& bn);
+
+
     private:
         string base;
+
+        string getBase(){
+            return base;
+        }
+
+
+        void setBase(string val){
+            if(isNumber(val)){
+                base = val;
+            } else {
+                throw invalid_argument("invalid argument to BigNumber constructor");
+            }
+        }
 
         void include_zeros(string &a, string &b){
             int _size = b.size() - a.size();
@@ -271,8 +306,8 @@ class BigNumber {
 };
 
 
-std::ostream& operator<< (std::ostream& out, BigNumber bn) {
-    out << bn.getBase();
+ostream& operator<<(ostream& out, const BigNumber& bn)  {
+    out << bn.base;
     return out;
 }
 
