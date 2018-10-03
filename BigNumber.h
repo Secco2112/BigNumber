@@ -99,6 +99,36 @@ class BigNumber {
         }
 
 
+        BigNumber bitAnd(BigNumber b) { // method name uppercased cause and is a private word
+            uint32_t klen = base.size();
+            uint32_t vlen = b.size();
+            uint32_t max_len = (klen > vlen) ? klen : vlen;
+            char * ret_str = (char *)calloc(max_len, sizeof(char));
+            const char * v_str = base.c_str();
+            const char * k_str = b.toString().c_str();
+            for (uint32_t i = 0; i < max_len; i++) {
+                if (i >= klen || i >= vlen)
+                    ret_str[i] = 0x00;
+                else
+                    ret_str[i] = v_str[i] & k_str[i];
+            }
+            string to_return(ret_str);
+            free(ret_str);
+            return to_return;
+        }
+
+
+        BigNumber maximum(BigNumber b) {
+            return BigNumber(base).compare(b) < 0? BigNumber(base): b;
+        }
+
+
+
+        BigNumber minimum(BigNumber b) {
+            return BigNumber(base).compare(b) < 0? b: BigNumber(base);
+        }
+
+
         BigNumber multiply(BigNumber Mult){
             string ret;
             string tmp = getBase();

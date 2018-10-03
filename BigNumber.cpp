@@ -132,6 +132,54 @@ int main()
 /*********************************************************************************************************/
 
     /**
+        method bitAnd(BigNumber val)
+        Method to return bitwise between BigNumber's.
+        @return a BigNumber with a integer value
+    */
+
+    BigNumber bigAnd("12");
+    cout << bigAnd.bitAnd(BigNumber("8")) << " as bitwise" << endl;
+
+    /** Output
+        0 as bitwise
+    */
+
+
+/*********************************************************************************************************/
+
+    /**
+        method maximum(BigNumber val)
+        Method to return the max value of two BigNumber's.
+        @return a BigNumber
+    */
+
+    BigNumber bigMax("131283");
+    cout << bigMax.maximum(BigNumber("812378123")) << endl;
+
+    /** Output
+        812378123
+    */
+
+
+/*********************************************************************************************************/
+
+    /**
+        method minimum(BigNumber val)
+        Method to return the min value of two BigNumber's.
+        @return a BigNumber
+    */
+
+    BigNumber bigMin("131283");
+    cout << bigMax.minimum(BigNumber("812378123")) << endl;
+
+    /** Output
+        131283
+    */
+
+
+/*********************************************************************************************************/
+
+    /**
         method signum()
         @return a int, -1 if the value is negative, 0 if is null or 1 if is positive
     */
@@ -264,6 +312,8 @@ int main()
     /** Output
         15 (as BigNumber)
     */
+
+
 
 
     return 0;
